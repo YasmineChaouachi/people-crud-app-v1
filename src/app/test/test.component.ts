@@ -16,9 +16,17 @@ export class TestComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     let formControls = {
-      firstname: new FormControl(),
+      firstname: new FormControl('', [
+        Validators.required,
+        Validators.pattern("[a-z .'-]+"),
+        Validators.minLength(2),
+      ]),
     };
     this.myForm = this.fb.group(formControls);
+  }
+
+  get firstname() {
+    return this.myForm.get('firstname');
   }
 
   ngOnInit(): void {}
