@@ -58,5 +58,14 @@ export class PeopleListComponent implements OnInit {
   delete(person: any) {
     let index = this.peopleList.indexOf(person);
     this.peopleList.splice(index, 1);
+
+    this.userService.deleteUser(person._id).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
