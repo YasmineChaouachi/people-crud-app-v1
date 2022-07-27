@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-test',
@@ -6,16 +12,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test.component.css'],
 })
 export class TestComponent implements OnInit {
-  name = 'Ragheb Alema';
-  imageUrl = 'assets/images/formalab-logo.png';
-  booksList = [];
+  myForm: FormGroup | any;
 
-  myCondition = false;
-  constructor() {}
+  constructor(private fb: FormBuilder) {
+    let formControls = {
+      firstname: new FormControl(),
+    };
+    this.myForm = this.fb.group(formControls);
+  }
 
   ngOnInit(): void {}
-
-  hello(myname: string) {
-    alert('hello ' + myname);
+  saveUser() {
+    console.log(this.myForm.value);
   }
 }

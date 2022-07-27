@@ -1,21 +1,8 @@
 <div class="container">
-  <p>hello {{ name }}</p>
-  <img [src]="imageUrl" alt="Formalab logo" width="100px">
-  <button (click)="hello(name)" class="btn btn-info">click</button>
-  <hr>
+  <form [formGroup]="myForm" (ngSubmit)="saveUser()">
+    <label for="firstname">Firstname</label>
+    <input type="text" name="firstname" id="firstname" formControlName="firstname">
 
-  <ul *ngFor="let bookname of booksList">
-    <li>{{bookname}}</li>
-  </ul>
-
-  <div *ngIf="booksList.length == 0" class="alert alert-warning">
-    no books found
-
-  </div>
-  <hr>
-
-  <!-- <ul *ngFor="let user of userList">
-  <li>{{user.firstname}}</li>
-</ul> -->
-
+    <input type="submit" value="Send">
+  </form>
 </div>
