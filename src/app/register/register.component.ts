@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { User } from '../user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -61,6 +62,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   register() {
-    console.log(this.registerForm.value);
+    let data = this.registerForm.value;
+
+    let user = new User(
+      data.firstname,
+      data.lastname,
+      data.email,
+      data.phone,
+      data.password
+    );
+
+    console.log(user);
   }
 }

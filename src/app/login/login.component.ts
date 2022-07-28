@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { User } from '../user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,6 +33,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    console.log(this.loginForm.value);
+    let data = this.loginForm.value;
+
+    let user = new User(null, null, data.email, null, data.password);
+
+    console.log(user);
   }
 }
