@@ -1,54 +1,113 @@
 <app-nav></app-nav>
 <div class="container my-5">
-  <div class="form-row">
-    <div class="col-6">
-      <div class="form-group">
-        <label for="firstname">Firstname</label>
-        <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="form-row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="firstname">Firstname</label>
+          <input type="text" name="firstname" id="firstname" class="form-control" formControlName="firstname">
+          <div *ngIf="firstname.touched && firstname.invalid">
+            <small *ngIf="firstname.errors.required" class="text-danger"><br>
+              Firstname is required
+            </small>
+            <small *ngIf="firstname.errors.pattern" class="text-danger"><br>
+              Invalid Firstname
+            </small>
+            <small *ngIf="firstname.errors.minlength" class="text-danger"><br>
+              Firstname must contain two characters at least
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="lastname">Lastname</label>
+          <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname">
+          <div *ngIf="lastname.touched && lastname.invalid">
+            <small *ngIf="lastname.errors.required" class="text-danger"><br>
+              Lastname is required
+            </small>
+            <small *ngIf="lastname.errors.pattern" class="text-danger"><br>
+              Invalid Lastname
+            </small>
+            <small *ngIf="lastname.errors.minlength" class="text-danger"><br>
+              Lastname must contain two characters at least
+            </small>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label for="lastname">Lastname</label>
-        <input type="text" name="lastname" id="lastname" class="form-control" formControlName="lastname">
+    <div class="form-row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
+            aria-describedby="emailHelp">
+          <div *ngIf="email.touched && email.invalid">
+            <small *ngIf="email.errors.required" class="text-danger"><br>
+              Email is required
+            </small>
+            <small *ngIf="email.errors.email" class="text-danger"><br>
+              Invalid Email
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" name="phone" id="phone" class="form-control" formControlName="phone">
+          <div *ngIf="phone.touched && phone.invalid">
+            <small *ngIf="phone.errors.required" class="text-danger"><br>
+              Phone is required
+            </small>
+            <small *ngIf="phone.errors.pattern" class="text-danger"><br>
+              Invalid Phone
+            </small>
+            <small *ngIf="phone.errors.minlength" class="text-danger"><br>
+              Phone must contain 8 characters at least
+            </small>
+            <small *ngIf="phone.errors.maxlength" class="text-danger"><br>
+              Phone must contain a maximum of 13 characters
+            </small>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-6">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
-          aria-describedby="emailHelp">
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="text" name="phone" id="phone" class="form-control" formControlName="phone">
-      </div>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="col-6">
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+    <div class="form-row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+          <div *ngIf="password.touched && password.invalid">
+            <small *ngIf="password.errors.required" class="text-danger"><br>
+              Password is required
+            </small>
+            <small *ngIf="password.errors.minlength" class="text-danger"><br>
+              Password must contain 6 characters at least
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="repeatPassword">Repeat Password</label>
+          <input type="password" class="form-control" id="repeatPassword" formControlName="repassword">
+          <div *ngIf="repassword.touched && repassword.invalid">
+            <small *ngIf="repassword.errors.required" class="text-danger"><br>
+              Repassword is required
+            </small>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label for="repeatPassword">Repeat Password</label>
-        <input type="password" class="form-control" id="repeatPassword" formControlName="repassword">
-      </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col">
-      <button type="submit" class="btn btn-primary mt-3">Register</button>
+    <div class="form-row">
+      <div class="col">
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="registerForm.invalid">Register</button>
 
+      </div>
     </div>
-  </div>
+  </form>
 </div>
 <app-footer></app-footer>
