@@ -99,12 +99,16 @@
               Repassword is required
             </small>
           </div>
+          <div *ngIf="repassword.valid && repassword.value != password.value" class="text-danger">
+            The passwords entered do not match
+          </div>
         </div>
       </div>
     </div>
     <div class="form-row">
       <div class="col">
-        <button type="submit" class="btn btn-primary mt-3" [disabled]="registerForm.invalid">Register</button>
+        <button type="submit" class="btn btn-primary mt-3"
+          [disabled]="registerForm.invalid || repassword.valid && repassword.value != password.value ">Register</button>
 
       </div>
     </div>
